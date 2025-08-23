@@ -14,12 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+<script src="https://cdn.counter.dev/script.js" data-id="f481319d-177a-4f2d-a6e0-5b7853a5000b" data-utcoffset="6"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
-
-
-
     <script>
         tailwind.config = { darkMode: 'class' }
         
@@ -65,9 +62,96 @@
         .fab:hover { transform: scale(1.1); box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25); }
         .fab-chat { bottom: 30px; right: 30px; background: linear-gradient(135deg, #0ea5e9, #6366f1); color: white; }
         #footer_contactus { display: flex; flex-wrap: wrap; }
+
+
+
+body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        /* ========================================
+        PRELOADER CSS
+        ========================================
+        */
+
+        /* The main loader container */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #F9FAFB; /* Light background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Smooth fade-out transition */
+            transition: opacity 0.75s, visibility 0.75s;
+        }
+
+        /* This class is added by JavaScript when the page is loaded */
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Container for the animating bars */
+        .loader-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Space between the bars */
+        }
+
+        /* Styling for a single animating bar */
+        .loader-bar {
+            width: 10px;
+            height: 50px;
+            background-color: #6C2BD9; /* Your brand's purple color */
+            animation: bar-grow 1.2s ease-in-out infinite;
+        }
+
+        /* Animation delay for the 2nd and 3rd bars to create a sequence */
+        .loader-bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loader-bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* The keyframe animation that makes the bars grow and shrink */
+        @keyframes bar-grow {
+            0%, 100% {
+                transform: scaleY(0.2);
+            }
+            50% {
+                transform: scaleY(1);
+            }
+        }
+
+        /* A helper class to prevent the user from scrolling the half-loaded page */
+        body.loading {
+            overflow: hidden;
+        }
+
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900">
+
+
+<div class="loader">
+        <div class="loader-content">
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
 
     <div id="main-content">
         <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm sticky top-0 z-40">
@@ -673,6 +757,26 @@
         }
 
         function initReelForm2() { const reelForm = document.getElementById('reelForm2'); if (!reelForm) return; reelForm.addEventListener('wheel', (e) => { if (isScrolling2 || currentStep2 === 7) return; isScrolling2 = true; if (e.deltaY > 0) { nextReelStep2(); } else if (e.deltaY < 0) { prevReelStep2(); } setTimeout(() => { isScrolling2 = false; }, 800); }, { passive: false }); let startY = 0; reelForm.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }); reelForm.addEventListener('touchend', (e) => { if (isScrolling2 || currentStep2 === 7) return; const endY = e.changedTouches[0].clientY; const deltaY = startY - endY; if (Math.abs(deltaY) > 50) { isScrolling2 = true; if (deltaY > 0) { nextReelStep2(); } else { prevReelStep2(); } setTimeout(() => { isScrolling2 = false; }, 800); } }); reelForm.addEventListener('click', (e) => { if (e.target.type === 'submit') { e.preventDefault(); submitReelForm2(e.target); } }); reelForm.addEventListener('input', (e) => { if (e.target.matches('input, textarea, select')) { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; } }); }
+    
+    document.body.classList.add('loading');
+document.body.classList.add('loading');
+
+        // Listen for the 'load' event, which fires when the entire page is ready
+        window.addEventListener('load', function () {
+            const loader = document.querySelector('.loader');
+            
+            // Hide the loader by adding the 'loader-hidden' class
+            loader.classList.add('loader-hidden');
+
+            // Re-enable scrolling on the body
+            document.body.classList.remove('loading');
+
+            // (Optional) After the fade-out animation completes, remove the loader
+            // from the DOM entirely so it doesn't interfere with anything.
+            loader.addEventListener('transitionend', function () {
+                loader.remove();
+            });
+        });
     </script>
 </body>
 </html>
