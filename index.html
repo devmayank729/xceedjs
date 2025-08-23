@@ -418,15 +418,28 @@
     
     // --- Visitor Logging ---
     async function logVisit() {
-        const visitorData = { 'ID': cryptoID, 'created at': new Date().toISOString(), 'USERAGENT': navigator.userAgent, 'REFERRER': document.referrer, 'TIMEZONE': Intl.DateTimeFormat().resolvedOptions().timeZone, 'PATH': window.location.pathname, 'UTM_SOURCE': new URLSearchParams(window.location.search).get('utm_source'), 'UTM_MEDIUM': new URLSearchParams(window.location.search).get('utm_medium') };
+        const visitorData = { 
+            'ID': cryptoID, 
+            'created at': new Date().toISOString(),
+            'USERAGENT': navigator.userAgent,
+            'REFERRER': new URLSearchParams(window.location.search).get('ref') ,
+            'TIMEZONE': Intl.DateTimeFormat().resolvedOptions().timeZone,
+            'PATH': window.location.pathname, 
+            'UTM_SOURCE': new URLSearchParams(window.location.search).get('utm_source'), 
+            'UTM_MEDIUM': new URLSearchParams(window.location.search).get('utm_medium')
+             };
+
+
         const geoAPIs = [ { url: 'https://freeipapi.com/api/json', parser: data => ({ ip: data.ipAddress, city: data.cityName, region: data.regionName, country: data.countryName }) }, { url: 'https://ip-api.com/json', parser: data => ({ ip: data.query, city: data.city, region: data.regionName, country: data.country }) }, { url: 'https://get.geojs.io/v1/ip/geo.json', parser: data => ({ ip: data.ip, city: data.city, region: data.region, country: data.country }) } ];
         for (const api of geoAPIs) { try { const response = await fetch(api.url); if (!response.ok) throw new Error(`Status ${response.status}`); const data = await response.json(); const parsed = api.parser(data); Object.assign(visitorData, { 'IP': parsed.ip, 'CITY': parsed.city, 'REGION': parsed.region, 'COUNTRY': parsed.country }); break; } catch (error) { /* Silent error */ } }
         const appsScriptUrl = `https://script.google.com/macros/s/AKfycbwb67ZNJaN6XwC3Fql-dClp7h5qoiVmmjaTwrhMhlvj1etenDGEnbro3RKVPX824g9Yjg/exec?${new URLSearchParams(visitorData).toString()}`;
         try { const response = await fetch(appsScriptUrl); if (response.ok) { visitor_count = await response.json(); } } catch (error) { console.error("Error fetching visitor count:", error) }
     }
+
+
     
     logVisit().then(() => {
-        const refValue = new URLSearchParams(window.location.search).get('ref') || '';
+        const refValue = new URLSearchParams(window.location.search).get('ref') || 'direct';
         const fields = [
             { id: 'reel1_cryptoID', value: cryptoID }, { id: 'reel1_visitor_count', value: visitor_count },
             { id: 'contact_cryptoID', value: cryptoID }, { id: 'contact_visitor_count', value: visitor_count },
@@ -708,7 +721,7 @@
         data.append('entry.1024050475', formData2.projectBrief || 'N/A');
         data.append('entry.865803138', 'From Reel Form 2');
         data.append('entry.1305243088', formData2.budget || 'N/A');
-        data.append('entry.1953195083', new URLSearchParams(window.location.search).get('ref') || '');
+        data.append('entry.1953195083', new URLSearchParams(window.location.search).get('ref') || 'direct');
         data.append('entry.132540394', cryptoID);
         data.append('entry.1752733798', visitor_count);
         data.append('entry.911687845', 'REEL2-FORM');
