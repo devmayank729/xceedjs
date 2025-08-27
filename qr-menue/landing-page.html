@@ -4,6 +4,15 @@
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17510525881"></script>
 <script>
+
+ window.onload = function() {
+            const loaderWrapper = document.getElementById('loader-wrapper');
+            loaderWrapper.classList.add('hidden');
+        };
+
+
+
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -15,6 +24,106 @@
     <title>QR Menu for Restaurants | XCEEDJS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <style>
+
+
+
+ #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #F9FAFB;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.75s ease;
+    }
+
+    #loader-wrapper.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loader-container {
+        text-align: center;
+    }
+
+    .qr-scanner {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background-color: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 10px;
+        gap: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .qr-dot {
+        background-color: #1F2937;
+        border-radius: 2px;
+    }
+    .qr-dot:nth-child(2) { opacity: 0.2; }
+    .qr-dot:nth-child(4) { opacity: 0.5; }
+    .qr-dot:nth-child(6) { opacity: 0.3; }
+    .qr-dot:nth-child(8) { opacity: 0.6; }
+
+    .scan-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #16A34A, transparent);
+        box-shadow: 0 0 10px #16A34A;
+        animation: scan 2.5s infinite cubic-bezier(0.5, 0, 0.5, 1);
+    }
+
+    .loader-text {
+        margin-top: 20px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #6C2BD9;
+        opacity: 0;
+        animation: fadeInText 1s ease 0.5s forwards;
+    }
+
+    @keyframes scan {
+        0% {
+            transform: translateY(-10px);
+        }
+        50% {
+            transform: translateY(130px);
+        }
+        100% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes fadeInText {
+        to {
+            opacity: 1;
+        }
+    }
+
+  
+
+
+
+
+
+
+
+
+
+
         /* --- GOOGLE FONTS & GLOBAL SETUP --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Poppins:wght@600;700&display=swap');
 
@@ -482,9 +591,34 @@
             .card { min-height: 330px; }
         }
 
+
+
     </style>
 </head>
 <body>
+
+
+    <!-- START: LOADER HTML -->
+    <div id="loader-wrapper">
+        <div class="loader-container">
+            <div class="qr-scanner">
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="qr-dot"></div>
+                <div class="scan-line"></div>
+            </div>
+            <div class="loader-text">Loading Digital Menu...</div>
+        </div>
+    </div>
+    <!-- END: LOADER HTML -->
+
+
 
     <div id="landing-page">
         <header class="sticky-header">
@@ -684,41 +818,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- EMBEDDED MENU DATA ---
-            // const allMenuData = [
-            //   { "id": 1, "name": "Chicken Hot & Sour", "price": 80, "category": "Soup", "diet": "non-veg", "image_url": "chickensoup.png", "description": "A classic Indo-Chinese soup, perfectly balanced with spicy and sour notes.", "ingredients": ["Chicken", "Mushrooms", "Carrot", "Tofu"], "nutrition": { "calories": "150kcal", "protein": "12g" } },
-            //   { "id": 2, "name": "Veg Clear", "price": 60, "category": "Soup", "diet": "veg", "image_url": "vegsoup.jpg", "description": "A light and healthy soup made with a clear vegetable broth and assorted fresh vegetables.", "ingredients": ["Broccoli", "Carrot", "Beans", "Cabbage"], "nutrition": { "calories": "80kcal", "protein": "4g" } },
-            //   { "id": 3, "name": "Paneer Tikka", "price": 250, "category": "Tandoori Starter", "diet": "veg", "image_url": "paneertikka.jpg", "description": "Cubes of paneer marinated in spices and yogurt, grilled in a tandoor to perfection.", "ingredients": ["Paneer", "Yogurt", "Spices", "Bell Peppers"], "nutrition": { "calories": "250kcal", "protein": "18g" } },
-            //   { "id": 4, "name": "Chicken Tikka", "price": 280, "category": "Tandoori Starter", "diet": "non-veg", "image_url": "chickentikka.jpg", "description": "Tender chicken pieces marinated in yogurt and a blend of Indian spices, cooked in a tandoor.", "ingredients": ["Chicken", "Yogurt", "Tandoori Masala"], "nutrition": { "calories": "300kcal", "protein": "25g" } },
-            //   { "id": 5, "name": "Chilli Chicken Dry", "price": 220, "category": "Starters", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Chilli+Chicken", "description": "A popular Indo-Chinese starter made with crispy chicken chunks tossed in a spicy sauce.", "ingredients": ["Chicken", "Soy Sauce", "Chilli Sauce", "Onion"], "nutrition": { "calories": "350kcal", "protein": "22g" } },
-            //   { "id": 6, "name": "Veg Manchurian Dry", "price": 180, "category": "Manchurian", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Veg+Manchurian", "description": "Fried vegetable balls in a sweet, sour, and spicy Manchurian sauce.", "ingredients": ["Cabbage", "Carrot", "Flour", "Soy Sauce"], "nutrition": { "calories": "280kcal", "protein": "8g" } },
-            //   { "id": 7, "name": "Arrabbiata Pasta", "price": 260, "category": "Pasta", "diet": "veg", "image_url": "https://placehold.co/300x200/fbbf24/FFFFFF?text=Arrabbiata", "description": "Penne pasta tossed in a spicy tomato and garlic sauce, garnished with parsley.", "ingredients": ["Penne Pasta", "Tomatoes", "Garlic", "Chilli"], "nutrition": { "calories": "400kcal", "protein": "12g" } },
-            //   { "id": 8, "name": "Alfredo Pasta", "price": 280, "category": "Pasta", "diet": "veg", "image_url": "https://placehold.co/300x200/fbbf24/FFFFFF?text=Alfredo", "description": "Fettuccine pasta in a creamy parmesan cheese sauce. A classic Italian delight.", "ingredients": ["Fettuccine", "Cream", "Parmesan", "Garlic"], "nutrition": { "calories": "550kcal", "protein": "15g" } },
-            //   { "id": 9, "name": "Paneer Butter Masala", "price": 240, "category": "Indian Gravy Veg", "diet": "veg", "image_url": "https://placehold.co/300x200/fb923c/FFFFFF?text=Paneer+Curry", "description": "A rich and creamy curry made with paneer, tomatoes, butter, and a blend of aromatic spices.", "ingredients": ["Paneer", "Tomatoes", "Butter", "Cream"], "nutrition": { "calories": "450kcal", "protein": "20g" } },
-            //   { "id": 10, "name": "Dal Makhani", "price": 200, "category": "Indian Gravy Veg", "diet": "veg", "image_url": "https://placehold.co/300x200/fb923c/FFFFFF?text=Dal+Makhani", "description": "A classic Punjabi dish made with black lentils, red kidney beans, butter, and cream.", "ingredients": ["Black Lentils", "Kidney Beans", "Butter"], "nutrition": { "calories": "380kcal", "protein": "14g" } },
-            //   { "id": 11, "name": "Butter Chicken", "price": 320, "category": "Indian Gravy Non Veg", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Butter+Chicken", "description": "Grilled chicken simmered in a smooth, buttery, and creamy tomato-based gravy.", "ingredients": ["Chicken", "Tomatoes", "Butter", "Cream"], "nutrition": { "calories": "500kcal", "protein": "30g" } },
-            //   { "id": 12, "name": "Mutton Rogan Josh", "price": 380, "category": "Indian Gravy Non Veg", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Rogan+Josh", "description": "An aromatic curried meat dish of Persian origin, made with tender lamb or goat.", "ingredients": ["Mutton", "Yogurt", "Spices", "Onion"], "nutrition": { "calories": "480kcal", "protein": "35g" } },
-            //   { "id": 13, "name": "Veg Fried Rice", "price": 160, "category": "Fried Rice & Noodles", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Fried+Rice", "description": "A classic dish of cooked rice stir-fried with fresh vegetables and seasoned with soy sauce.", "ingredients": ["Rice", "Carrot", "Beans", "Peas"], "nutrition": { "calories": "350kcal", "protein": "7g" } },
-            //   { "id": 14, "name": "Hakka Noodles", "price": 170, "category": "Fried Rice & Noodles", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Noodles", "description": "Stir-fried noodles with a mix of vegetables, seasoned with sauces to create a savory delight.", "ingredients": ["Noodles", "Cabbage", "Carrot", "Bell Pepper"], "nutrition": { "calories": "380kcal", "protein": "9g" } },
-            //   { "id": 15, "name": "Chicken Biryani", "price": 280, "category": "Biryani", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Chicken+Biryani", "description": "A flavorful and aromatic rice dish made with basmati rice, chicken, and spices.", "ingredients": ["Basmati Rice", "Chicken", "Yogurt", "Spices"], "nutrition": { "calories": "600kcal", "protein": "28g" } },
-            //   { "id": 16, "name": "Veg Dum Biryani", "price": 240, "category": "Biryani", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Veg+Biryani", "description": "A fragrant rice dish cooked with mixed vegetables, herbs, and biryani spices.", "ingredients": ["Basmati Rice", "Mixed Vegetables", "Yogurt"], "nutrition": { "calories": "500kcal", "protein": "10g" } },
-            //   { "id": 17, "name": "Butter Naan", "price": 40, "category": "Tandoori Bread & Roti", "diet": "veg", "image_url": "https://placehold.co/300x200/d1d5db/FFFFFF?text=Naan", "description": "A soft and fluffy Indian bread cooked in a tandoor and brushed with butter.", "ingredients": ["Flour", "Yogurt", "Yeast", "Butter"], "nutrition": { "calories": "200kcal", "protein": "5g" } },
-            //   { "id": 18, "name": "Tandoori Roti", "price": 25, "category": "Tandoori Bread & Roti", "diet": "veg", "image_url": "https://placehold.co/300x200/d1d5db/FFFFFF?text=Roti", "description": "A whole wheat Indian bread cooked in the traditional tandoor oven.", "ingredients": ["Whole Wheat Flour", "Water", "Salt"], "nutrition": { "calories": "120kcal", "protein": "4g" } },
-            //   { "id": 19, "name": "Aloo Paratha", "price": 70, "category": "Tawa Roti & Paratha", "diet": "veg", "image_url": "https://placehold.co/300x200/d1d5db/FFFFFF?text=Paratha", "description": "A popular Indian flatbread stuffed with a spiced potato mixture.", "ingredients": ["Wheat Flour", "Potatoes", "Spices", "Ghee"], "nutrition": { "calories": "250kcal", "protein": "6g" } },
-            //   { "id": 20, "name": "Special Veg Thaali", "price": 220, "category": "Meal & Thaali", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Veg+Thali", "description": "A complete meal with Paneer Sabzi, Dal, Rice, 2 Rotis, Salad, Papad, and a Sweet.", "ingredients": ["Paneer", "Lentils", "Rice", "Flour"], "nutrition": { "calories": "800kcal", "protein": "25g" } },
-            //   { "id": 21, "name": "Paneer Roll", "price": 120, "category": "Roll", "diet": "veg", "image_url": "https://placehold.co/300x200/fb923c/FFFFFF?text=Paneer+Roll", "description": "Spicy paneer tikka wrapped in a soft flatbread with onions and mint chutney.", "ingredients": ["Paneer", "Paratha", "Onion", "Mint Chutney"], "nutrition": { "calories": "400kcal", "protein": "15g" } },
-            //   { "id": 22, "name": "Chicken Roll", "price": 140, "category": "Roll", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Chicken+Roll", "description": "Succulent chicken pieces wrapped in a paratha with sauces and sliced onions.", "ingredients": ["Chicken", "Paratha", "Onion", "Egg"], "nutrition": { "calories": "450kcal", "protein": "20g" } },
-            //   { "id": 23, "name": "Fresh Lime Soda", "price": 60, "category": "Drinks", "diet": "veg", "image_url": "https://placehold.co/300x200/60a5fa/FFFFFF?text=Lime+Soda", "description": "A refreshing carbonated drink with a choice of sweet or salted lime juice.", "ingredients": ["Lime", "Soda", "Sugar/Salt", "Mint"], "nutrition": { "calories": "90kcal", "protein": "0g" } },
-            //   { "id": 24, "name": "Masala Maggie", "price": 50, "category": "Maggie", "diet": "veg", "image_url": "https://placehold.co/300x200/fbbf24/FFFFFF?text=Maggie", "description": "The classic instant noodles cooked with a special blend of Indian spices and vegetables.", "ingredients": ["Noodles", "Masala", "Peas", "Carrot"], "nutrition": { "calories": "300kcal", "protein": "8g" } },
-            //   { "id": 25, "name": "Garlic Bread", "price": 130, "category": "Starters", "diet": "veg", "image_url": "https://placehold.co/300x200/d1d5db/FFFFFF?text=Garlic+Bread", "description": "Toasted bread topped with garlic, butter, and herbs. Add cheese for extra delight.", "ingredients": ["Baguette", "Garlic", "Butter", "Parsley"], "nutrition": { "calories": "180kcal", "protein": "4g" } },
-            //   { "id": 26, "name": "Kadai Paneer", "price": 250, "category": "Indian Gravy Veg", "diet": "veg", "image_url": "https://placehold.co/300x200/fb923c/FFFFFF?text=Kadai+Paneer", "description": "A spicy and flavorful dish made with paneer and bell peppers cooked in a spice mix.", "ingredients": ["Paneer", "Bell Peppers", "Onion", "Tomato"], "nutrition": { "calories": "420kcal", "protein": "19g" } },
-            //   { "id": 27, "name": "Chicken Kadhai", "price": 340, "category": "Indian Gravy Non Veg", "diet": "non-veg", "image_url": "https://placehold.co/300x200/f87171/FFFFFF?text=Chicken+Kadhai", "description": "A delicious, spicy dish made with chicken, onions, tomatoes, ginger, garlic & fresh spices.", "ingredients": ["Chicken", "Bell Peppers", "Onion", "Kadai Masala"], "nutrition": { "calories": "480kcal", "protein": "32g" } },
-            //   { "id": 28, "name": "Laccha Paratha", "price": 45, "category": "Tandoori Bread & Roti", "diet": "veg", "image_url": "https://placehold.co/300x200/d1d5db/FFFFFF?text=Laccha+Paratha", "description": "A multi-layered shallow fried North Indian flat bread made with whole wheat flour.", "ingredients": ["Whole Wheat Flour", "Ghee", "Salt"], "nutrition": { "calories": "220kcal", "protein": "5g" } },
-            //   { "id": 29, "name": "Coke", "price": 40, "category": "Drinks", "diet": "veg", "image_url": "https://placehold.co/300x200/ef4444/FFFFFF?text=Coke", "description": "A classic cold drink to accompany your meal.", "ingredients": ["Carbonated Water", "Sugar", "Caffeine"], "nutrition": { "calories": "140kcal", "protein": "0g" } },
-            //   { "id": 30, "name": "Gobi Manchurian", "price": 170, "category": "Manchurian", "diet": "veg", "image_url": "https://placehold.co/300x200/4ade80/FFFFFF?text=Gobi+Manchurian", "description": "Crispy cauliflower florets tossed in a spicy, sweet and tangy Manchurian sauce.", "ingredients": ["Cauliflower", "Flour", "Soy Sauce", "Garlic"], "nutrition": { "calories": "320kcal", "protein": "7g" } }
-            // ];
-
-
             const allMenuData = 
             [
   {
