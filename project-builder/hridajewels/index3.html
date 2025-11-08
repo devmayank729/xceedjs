@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XCEEDJS <> Hrida Jewels | Project Configurator</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- GSAP (GreenSock) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
+    <!-- Anime.js (for particles) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     
+    <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
+    <!-- Google Fonts: Poppins & Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
+    <!-- XCEEDJS Brand Styles -->
     <script>
         tailwind.config = {
             theme: {
@@ -317,8 +323,10 @@
 </head>
 <body class="bg-dark-900">
 
+    <!-- Particle Canvas for "Add" animation -->
     <canvas id="particle-canvas"></canvas>
 
+    <!-- Info Modal Structure -->
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div id="modal-overlay" class="absolute inset-0"></div>
         <div id="modal-content" class="relative z-10 w-full max-w-lg p-8 rounded-2xl shadow-lg transform transition-all duration-300 scale-95">
@@ -339,19 +347,25 @@
         </div>
     </div>
     
+    <!-- 1. Brand Collab Header -->
     <header class="header-bg py-24 md:py-32 text-center overflow-hidden">
         <div class="container mx-auto max-w-5xl px-4">
             <div class="flex items-center justify-center space-x-6 md:space-x-12">
                 
+                <!-- XCEEDJS Logo -->
                 <div id="logo-xceedjs" class="opacity-0 -translate-x-full">
-                    <img src="logo1.png" alt="XCEEDJS Logo" class="h-20 w-20 md:h-28 md:w-28 rounded-full border-4 border-gray-700 shadow-lg" onerror="this.src='https://placehold.co/120x120/6C2BD9/FFFFFF/png?text=XCEEDJS&font=poppins'">
+                    <!-- Updated to logo1.png -->
+                    <img src="logo1.png" alt="XCEEDJS Logo" class="h-20 w-20 md:h-28 md:w-28 rounded-full border-4 border-gray-700 shadow-lg" onerror="this.src='https://placehold.co/120x120/6C2BD9/FFFFFF/png?text=XJ&font=poppins'">
                     <h2 class="font-poppins font-semibold text-white mt-3">XCEEDJS</h2>
                 </div>
                 
+                <!-- Collab Icon -->
                 <span id="collab-icon" class="font-poppins text-4xl md:text-7xl text-brand-gold font-bold opacity-0 scale-0">&</span>
                 
+                <!-- Hrida Jewels Logo -->
                 <div id="logo-hrida" class="opacity-0 translate-x-full">
-                    <img src="logo2.png" alt="Hrida Jewels Logo" class="h-20 w-20 md:h-28 md:w-28 rounded-full border-4 border-gray-700 shadow-lg" onerror="this.src='https://placehold.co/120x120/D4AF37/FFFFFF/png?text=Hrida&font=poppins'">
+                    <!-- Updated to logo2.png -->
+                    <img src="logo2.png" alt="Hrida Jewels Logo" class="h-20 w-20 md:h-28 md:w-28 rounded-full border-4 border-gray-700 shadow-lg" onerror="this.src='https://placehold.co/120x120/D4AF37/FFFFFF/png?text=HJ&font=poppins'">
                     <h2 class="font-poppins font-semibold text-white mt-3">Hrida Jewels</h2>
                 </div>
             </div>
@@ -359,12 +373,14 @@
             <h1 id="main-title" class="font-poppins text-4xl md:text-6xl font-bold text-white mt-12 opacity-0">Build Your Digital Flagship</h1>
             <p id="sub-title" class="font-manrope text-lg md:text-xl text-light-200 mt-4 max-w-2xl mx-auto opacity-0">An Interactive Configurator for the Hrida Jewels Team</p>
             
+            <!-- NEW: Logo Disclaimer -->
             <p id="logo-disclaimer" class="font-manrope text-sm text-light-200 mt-8 max-w-xl mx-auto opacity-0 italic">
                 *To respect your brand privacy, we have not used your official logo. Our design team has prepared this complimentary placeholder concept (logo2.png) especially for this proposal.
             </p>
         </div>
     </header>
 
+    <!-- Progress Bar -->
     <div id="progress-bar-container">
         <div class="container mx-auto max-w-4xl px-4">
             <div class="flex justify-between items-center mb-1">
@@ -379,6 +395,7 @@
 
     <div class="container mx-auto max-w-4xl p-4 md:p-8">
         
+        <!-- 2. Personal Intro & Offer -->
         <section class="bg-dark-700 border border-brand-purple shadow-purple-glow p-8 md:p-10 rounded-2xl relative">
             <h2 class="text-3xl font-bold">Your Exclusive Q4 Offer</h2>
             <p class="mt-6 text-lg text-light-100 leading-relaxed">It was inspiring to speak with you and hear the ambitious, high-level vision for Hrida Jewels. This configurator is the blueprint to that vision.</p>
@@ -386,8 +403,10 @@
             <p class="mt-4 text-lg text-light-100 leading-relaxed">Lock in the **Premium Foundation (Market Price: ₹12,000) for just ₹8,000**. This exclusive pricing is only valid until **November 10th**, as we must finalize our Q4 2026 project schedules and pricing.</p>
         </section>
 
+        <!-- 3. The Form / Project Selector -->
         <form id="proposal-form" class="mt-12 space-y-16">
             
+            <!-- STEP 1: The Core Package -->
             <section>
                 <h2 class="text-4xl font-bold">The Foundation (Phase 1)</h2>
                 <p class="text-lg text-light-200 mt-2">The essential first step: a world-class store to rival Giva.</p>
@@ -402,6 +421,7 @@
                                     <span class="block text-3xl font-bold text-brand-purple">₹8,000</span>
                                     <span class="block text-lg text-light-200 line-through">Market: ₹12,000</span>
                                 </div>
+                                <!-- This one is non-negotiable, so it's 'ADDED' by default -->
                                 <button type="button" class="add-btn added" data-id="base-package" data-price="8000" data-name="Premium E-Commerce Website">
                                     ADDED ✓
                                 </button>
@@ -411,10 +431,14 @@
                 </div>
             </section>
 
+            <!-- STEP 2: Feature Add-ons -->
+            
+            <!-- Group A: Shopping & Product Experience -->
             <section>
                 <h2 class="text-3xl font-bold">A) Shopping & Product Experience</h2>
                 <p class="text-lg text-light-200 mt-2">Enhance how customers browse and select your products.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Feature 1 -->
                     <div class="feature-card" id="card-feature-1">
                         <button type="button" class="info-btn" data-title="Advanced Filters" data-what="Allows customers to sort products by color, size, material, price range, and any other attribute you want." data-why="Drastically increases sales by helping customers find what they want, faster. Stops them from leaving in frustration.">i</button>
                         <div class="p-6">
@@ -428,6 +452,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 2 -->
                     <div class="feature-card" id="card-feature-2">
                         <button type="button" class="info-btn" data-title="Wishlist (Save for Later)" data-what="A 'heart' icon on every product. Customers can save items to their personal wishlist to buy later." data-why="A powerful marketing tool. It reduces cart abandonment and gives you data on what products are most 'wished for'.">i</button>
                         <div class="p-6">
@@ -441,6 +466,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 3: Product Variants (Price increased) -->
                     <div class="feature-card" id="card-feature-3">
                         <button type="button" class="info-btn" data-title="Product Variants" data-what="Showcase products in different colors, sizes, or materials (e.g., 18k Gold, 22k Gold) on one page." data-why="Simplifies browsing and increases the chance of conversion by showing all options at once.">i</button>
                         <div class="p-6">
@@ -454,6 +480,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 4 -->
                     <div class="feature-card" id="card-feature-4">
                         <button type="button" class="info-btn" data-title="Customer Reviews + Ratings" data-what="Allow verified buyers to leave a 1-5 star rating and a written review, with photos." data-why="The #1 way to build 'social proof' and trust. More than 90% of customers read reviews before buying.">i</button>
                         <div class="p-6">
@@ -467,6 +494,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 5: Product Compare (Price increased) -->
                     <div class="feature-card" id="card-feature-5">
                         <button type="button" class="info-btn" data-title="Product Compare" data-what="Lets customers select 2-3 items and see a side-by-side comparison of their specs, price, and details." data-why="Essential for high-value items like jewelry. It helps users make a confident, informed decision.">i</button>
                         <div class="p-6">
@@ -480,6 +508,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 6 -->
                     <div class="feature-card" id="card-feature-6">
                         <button type="button" class="info-btn" data-title="Recently Viewed Products" data-what="A small slider at the bottom of the page that shows the products a customer has just looked at." data-why="A simple but powerful psychological tool. It keeps products top-of-mind and makes navigation easy.">i</button>
                         <div class="p-6">
@@ -496,10 +525,12 @@
                 </div>
             </section>
 
+            <!-- Group B: Customer Experience (CX) Upgrade -->
             <section>
                 <h2 class="text-3xl font-bold">B) Customer Experience (CX) Upgrade</h2>
                 <p class="text-lg text-light-200 mt-2">Build trust and guide your customers effectively.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Feature 7 -->
                     <div class="feature-card" id="card-feature-7">
                         <button type="button" class="info-btn" data-title="Live Chat + WhatsApp Chat" data-what="A small bubble on the site that lets customers chat with you instantly on WhatsApp or a live chat widget." data-why="Instantly answers customer questions about high-value items, builds trust, and captures leads.">i</button>
                         <div class="p-6">
@@ -513,6 +544,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 8: Smart Recs (Price increased) -->
                     <div class="feature-card" id="card-feature-8">
                         <button type="button" class="info-btn" data-title="Smart Recommendations (AI)" data-what="AI-based suggestions like 'You may also like...' and 'Customers who bought this also bought...'" data-why="This is the 'Amazon' feature. It's proven to increase the average order value by showing customers products they didn't even know they wanted.">i</button>
                         <div class="p-6">
@@ -526,6 +558,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 9 -->
                     <div class="feature-card" id="card-feature-9">
                         <button type="button" class="info-btn" data-title="Pincode Delivery Checker" data-what="A box on the product page where customers can enter their pincode to see if you deliver to them and how fast." data-why="Manages customer expectations *before* they order. Reduces checkout failures and builds enormous trust.">i</button>
                         <div class="p-6">
@@ -539,6 +572,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 10 -->
                     <div class="feature-card" id="card-feature-10">
                         <button type="button" class="info-btn" data-title="Sticky Cart / Quick Cart" data-what="A cart icon that 'sticks' to the page, or a side-panel cart that slides out. Customers can edit their cart without leaving the page." data-why="Reduces friction. Makes the cart omnipresent and easy to access, which boosts total conversions.">i</button>
                         <div class="p-6">
@@ -555,6 +589,7 @@
                 </div>
             </section>
 
+            <!-- Group C: Checkout & Order Flow -->
             <section>
                 <h2 class="text-3xl font-bold">C) Checkout & Order Flow</h2>
                 <p class="text-lg text-light-200 mt-2">Convert more sales with a seamless checkout.</p>
@@ -601,6 +636,7 @@
                 </div>
             </section>
 
+            <!-- Group D: Shipping, CRM & Backend Automation -->
             <section>
                 <h2 class="text-3xl font-bold">D) Backend & CRM Automation</h2>
                 <p class="text-lg text-light-200 mt-2">The 'smart' site features you and your son envisioned.</p>
@@ -631,6 +667,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 16: Basic CRM (Price Increased) -->
                     <div class="feature-card" id="card-feature-16">
                         <button type="button" class="info-btn" data-title="Basic CRM Dashboard" data-what="A built-in dashboard to see your customer list, their full order history, and basic analytics (total sales, average order value)." data-why="Gives you a single, clear view of your business's health and who your best customers are.">i</button>
                         <div class="p-6">
@@ -644,6 +681,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 17: Advanced CRM (Price Increased) -->
                     <div class="feature-card" id="card-feature-17">
                         <button type="button" class="info-btn" data-title="Advanced CRM Suite" data-what="Integrate a professional CRM (like HubSpot or Pipedrive). Track customer segments, see abandoned carts, and get deep marketing analytics." data-why="This is the 'brain' of your son's vision. It lets you run your business with data, not guesswork. (Note: CRM software has its own monthly fee).">i</button>
                         <div class="p-6">
@@ -660,6 +698,7 @@
                 </div>
             </section>
 
+            <!-- Group E: Marketing & Repeat Sales -->
             <section>
                 <h2 class="text-3xl font-bold">E) Marketing & Repeat Sales</h2>
                 <p class="text-lg text-light-200 mt-2">Features that win back customers and drive new sales.</p>
@@ -716,6 +755,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Feature 22: Google Shopping (Price increased) -->
                     <div class="feature-card" id="card-feature-22">
                         <button type="button" class="info-btn" data-title="Google Shopping Feed" data-what="Syncs your products with Google so they appear in the 'Shopping' tab results with images and prices." data-why="Captures high-intent buyers who are searching for specific products on Google.">i</button>
                         <div class="p-6">
@@ -732,6 +772,7 @@
                 </div>
             </section>
 
+            <!-- Group F: Design Enhancements -->
             <section>
                 <h2 class="text-3xl font-bold">F) Design Enhancements</h2>
                 <p class="text-lg text-light-200 mt-2">Finishing touches that create a high-end, trustworthy feel.</p>
@@ -762,9 +803,11 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                    <!-- Feature 25 (Logo) has been REMOVED -->
+                </div>
             </section>
 
+            <!-- Group G: High-Level Professional Features -->
             <section>
                 <h2 class="text-3xl font-bold">G) High-Level Professional Features</h2>
                 <p class="text-lg text-light-200 mt-2">Scale your brand internationally and adopt cutting-edge tech.</p>
@@ -824,6 +867,7 @@
                 </div>
             </section>
             
+            <!-- Group H: Advanced Tech & AI (NEW) -->
             <section>
                 <h2 class="text-3xl font-bold">H) Advanced Tech & AI</h2>
                 <p class="text-lg text-light-200 mt-2">The 'next-level' features that put you years ahead.</p>
@@ -883,6 +927,7 @@
                 </div>
             </section>
 
+            <!-- STEP 3: Custom Request -->
             <section class="bg-dark-700 border border-dark-600 p-8 md:p-10 rounded-2xl">
                 <h2 class="text-3xl font-bold">Have More Ideas?</h2>
                 <p class="text-lg text-light-200 mt-2">If you have a unique feature in mind that isn't listed, please describe it below.</p>
@@ -892,21 +937,25 @@
                 </div>
             </section>
 
+            <!-- STEP 4: Total & Submit -->
             <section class="sticky bottom-0 z-10 p-4 -m-4">
                 <div class="bg-dark-700 shadow-card rounded-2xl border border-dark-600 p-6">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                         <div class="text-center md:text-left w-full">
                             <h3 class="text-xl font-bold">Live Estimated Total:</h3>
                             
+                            <!-- Subtotal -->
                             <div class="text-3xl font-bold text-white" data-total="8000">
                                 <span id="subtotal-price">₹8,000</span>
                             </div>
 
+                            <!-- Discount (HIDDEN BY DEFAULT) -->
                             <div id="discount-row" class="hidden text-brand-green">
-                                <span class="text-lg font-medium" id="discount-text">Volume Discount</span>
+                                <span class="text-lg font-medium">Volume Discount (5%)</span>
                                 <span class="text-lg font-medium ml-2" id="discount-amount">-₹0</span>
                             </div>
                             
+                            <!-- Final Total -->
                             <div class="text-5xl font-bold text-brand-purple mt-2" id="total-price" data-total="8000">₹8,000</div>
                             <p class="text-sm text-light-200">(+ SaaS platform fees where applicable)</p>
                         </div>
@@ -919,6 +968,7 @@
         </form>
     </div>
 
+    <!-- Footer -->
     <footer class="text-center py-16 bg-dark-800 mt-20 border-t border-dark-700">
         <h3 class="font-poppins text-3xl font-bold text-white">XCEEDJS</h3>
         <p class="text-light-200 text-lg mt-2">Web Design & Automation</p>
@@ -931,10 +981,11 @@
         </div>
     </footer>
 
+    <!-- Hidden PDF Structure -->
     <div id="pdf-quote">
         <div class="pdf-header">
-            <img src="logo1.png" alt="XCEEDJS Logo" class="xceedjs-logo" onerror="this.src='https://placehold.co/120x60/6C2BD9/FFFFFF/png?text=XCEEDJS&font=poppins'"/>
-            <img src="logo2.png" alt="Hrida Jewels Logo" class="client-logo" onerror="this.src='https://placehold.co/100x100/D4AF37/FFFFFF/png?text=Hrida&font=poppins'"/>
+            <img src="logo1.png" alt="XCEEDJS Logo" class="xceedjs-logo" onerror="this.src='httpsB://placehold.co/120x60/6C2BD9/FFFFFF/png?text=XCEEDJS&font=poppins'"/>
+            <img src="logo2.png" alt="Hrida Jewels Logo" class="client-logo" onerror="this.src='https://placehold.co/100x100/D4AF37/FFFFFF/png?text=HJ&font=poppins'"/>
         </div>
         <div class="pdf-title">
             <h1>Project Quotation</h1>
@@ -945,13 +996,15 @@
         <div class="pdf-section">
             <h2>Selected Package & Features</h2>
             <div class="pdf-item-list" id="pdf-item-list">
-                </div>
+                <!-- Items will be dynamically inserted here -->
+            </div>
         </div>
 
         <div id="pdf-comments-section" class="pdf-section hidden">
             <h2>Custom Requests</h2>
             <div class="pdf-comments" id="pdf-comments-text">
-                </div>
+                <!-- Custom comments will be inserted here -->
+            </div>
         </div>
 
         <div class="pdf-total-summary">
@@ -961,7 +1014,7 @@
                     <td align="right" id="pdf-subtotal">₹0</td>
                 </tr>
                 <tr id="pdf-discount-row" class="hidden">
-                    <td id="pdf-discount-text">Volume Discount</td>
+                    <td>Volume Discount (5%)</td>
                     <td align="right" id="pdf-discount">-₹0</td>
                 </tr>
                 <tr class="final-total">
@@ -972,7 +1025,7 @@
         </div>
 
         <div class="pdf-footer">
-            <p><strong>XCEEDJS</strong> | Web Design & Automation</p>
+            <p><strong>XCEEDJS</strong> | Web Design & Automation</sstrong></p>
             <p>xceedjs.com | Xceedjs@gmail.com | +91 9632546490</p>
             <p>This quote is valid until November 10th, 2025.</p>
         </div>
@@ -1064,7 +1117,6 @@
             const subtotalPriceEl = document.getElementById('subtotal-price');
             const discountRowEl = document.getElementById('discount-row');
             const discountAmountEl = document.getElementById('discount-amount');
-            const discountTextEl = document.getElementById('discount-text');
             const totalPriceEl = document.getElementById('total-price');
             const commentsBox = document.getElementById('comments');
             const mainSubmitButton = document.getElementById('main-submit-button');
@@ -1091,29 +1143,18 @@
 
                 let discount = 0;
                 let total = subtotal;
-                let discountLabel = '';
 
-                // NEW: Tiered Discount Logic
-                if (subtotal >= 30000) {
-                    discount = subtotal * 0.10;
-                    total = subtotal - discount;
-                    discountLabel = 'Volume Discount (10%)';
-                    discountAmountEl.textContent = `-₹${Math.round(discount).toLocaleString('en-IN')}`;
-                    discountTextEl.textContent = discountLabel;
-                    discountRowEl.classList.remove('hidden');
-                } else if (subtotal > 20000) {
+                if (subtotal > 20000) {
                     discount = subtotal * 0.05;
                     total = subtotal - discount;
-                    discountLabel = 'Volume Discount (5%)';
                     discountAmountEl.textContent = `-₹${Math.round(discount).toLocaleString('en-IN')}`;
-                    discountTextEl.textContent = discountLabel;
                     discountRowEl.classList.remove('hidden');
                 } else {
                     discountRowEl.classList.add('hidden');
                 }
                 
                 // Animate the subtotal change
-                const currentSubtotal = parseInt(subtotalPriceEl.textContent.replace('₹', '').replace(/,/g, ''), 10);
+                const currentSubtotal = parseInt(subtotalPriceEl.textContent.replace('₹', '').replace(',', ''), 10);
                 anime({
                     targets: subtotalPriceEl,
                     innerHTML: [currentSubtotal, subtotal],
@@ -1183,7 +1224,6 @@
                     subtotal: 0,
                     discount: 0,
                     total: 0,
-                    discountLabel: '',
                     comments: commentsBox.value.trim()
                 };
 
@@ -1196,14 +1236,12 @@
                     }
                 });
 
-                if (data.subtotal >= 30000) {
-                    data.discount = data.subtotal * 0.10;
-                    data.discountLabel = 'Volume Discount (10%)';
-                } else if (data.subtotal > 20000) {
+                if (data.subtotal > 20000) {
                     data.discount = data.subtotal * 0.05;
-                    data.discountLabel = 'Volume Discount (5%)';
+                    data.total = data.subtotal - data.discount;
+                } else {
+                    data.total = data.subtotal;
                 }
-                data.total = data.subtotal - data.discount;
                 
                 return data;
             };
@@ -1235,7 +1273,6 @@
                 document.getElementById('pdf-subtotal').textContent = `₹${quoteData.subtotal.toLocaleString('en-IN')}`;
                 if (quoteData.discount > 0) {
                     document.getElementById('pdf-discount-row').classList.remove('hidden');
-                    document.getElementById('pdf-discount-text').textContent = quoteData.discountLabel;
                     document.getElementById('pdf-discount').textContent = `-₹${Math.round(quoteData.discount).toLocaleString('en-IN')}`;
                 } else {
                     document.getElementById('pdf-discount-row').classList.add('hidden');
@@ -1258,39 +1295,31 @@
             // 5. Send to WhatsApp Function
             const sendToWhatsApp = () => {
                 const quoteData = getQuoteData();
-                const nl = '|'; // New Line
-                let message = `Hello Mayank, I've configured a project for *Hrida Jewels*. Please review the quote:${nl}${nl}`;
-                message += `*--- QUOTATION DETAILS ---*${nl}${nl}`;
+                const nl = '%0A'; // New Line
+                let message = `Hello Mayank, I'm interested in a website for Hrida Jewels.${nl}${nl}Here is my selected quote:${nl}---${nl}`;
 
-                // Add Base Package
-                const basePackage = quoteData.items.find(item => item.id === 'base-package');
-                if (basePackage) {
-                    message += `*BASE PACKAGE (Offer)*${nl}✅ ${basePackage.name} (₹${basePackage.price.toLocaleString('en-IN')})${nl}${nl}`;
-                }
+                quoteData.items.forEach(item => {
+                    const name = item.name;
+                    const price = item.price.toLocaleString('en-IN');
+                    if (item.id === 'base-package') {
+                        message += `*BASE PACKAGE (Offer):*${nl}✅ ${name} (₹${price})${nl}---${nl}`;
+                    } else {
+                        if (message.indexOf('*FEATURE ADD-ONS:*') === -1) {
+                            message += `*FEATURE ADD-ONS:*${nl}`;
+                        }
+                        message += `✅ ${name} (₹${price})${nl}`;
+                    }
+                });
 
-                // Add Add-ons
-                const addOns = quoteData.items.filter(item => item.id !== 'base-package');
-                if (addOns.length > 0) {
-                    message += `*FEATURE ADD-ONS*${nl}`;
-                    addOns.forEach(item => {
-                        message += `✅ ${item.name} (₹${item.price.toLocaleString('en-IN')})${nl}`;
-                    });
-                    message += `${nl}`;
-                }
-
-                // Add Custom Comments
                 if (quoteData.comments) {
-                    message += `*CUSTOM REQUESTS*${nl}_${quoteData.comments}_${nl}${nl}`;
+                    message += `---${nl}*CUSTOM REQUESTS:*${nl}${quoteData.comments}${nl}`;
                 }
 
-                // Add Billing Summary
-                message += `*--- BILLING SUMMARY ---*${nl}`;
-                message += `Subtotal: ₹${quoteData.subtotal.toLocaleString('en-IN')}${nl}`;
+                message += `---${nl}*Subtotal: ₹${quoteData.subtotal.toLocaleString('en-IN')}*${nl}`;
                 if (quoteData.discount > 0) {
-                    message += `${quoteData.discountLabel}: *-₹${Math.round(quoteData.discount).toLocaleString('en-IN')}*${nl}`;
+                    message += `*Discount (5%): -₹${Math.round(quoteData.discount).toLocaleString('en-IN')}*${nl}`;
                 }
-                message += `*FINAL TOTAL: ₹${Math.round(quoteData.total).toLocaleString('en-IN')}*${nl}`;
-                message += `_(+ SaaS platform fees where applicable)_`;
+                message += `*FINAL TOTAL: ₹${Math.round(quoteData.total).toLocaleString('en-IN')}*${nl}(+ SaaS fees where applicable)`;
 
                 const whatsappURL = `https://wa.me/919632546490?text=${encodeURIComponent(message)}`;
                 window.open(whatsappURL, '_blank');
@@ -1399,4 +1428,3 @@
     </script>
 </body>
 </html>
-```eof
